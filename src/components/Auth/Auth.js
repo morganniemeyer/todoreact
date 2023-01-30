@@ -1,13 +1,14 @@
 import React from 'react';
 import { useState } from 'react';
-import { Redirect, useParams } from 'react-router-dom';
+import { NavLink, Redirect, useParams } from 'react-router-dom';
+import { useUser } from '../../context/AuthContext.js';
 import { authUser } from '../../services/auth.js';
 
 export default function Auth() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { type } = useParams();
-  const { user, setUser } = useState('');
+  const { user, setUser } = useUser();
 
   if (user) {
     return <Redirect to="/items" />;
@@ -21,24 +22,28 @@ export default function Auth() {
     }
   };
   return (
-    <div>
-      <label>Email</label>
-      <input
-        type="email"
-        placeholder="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <label
-        type="password"
-        placeholder="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      >
-        Password
-      </label>
-      <input />
-      <button onClick={submitAuth}>Submit</button>
-    </div>
+    <>
+      <div>
+        <NavLink to="/auth/sign-in">Sign In!</NavLink>
+        <NavLink to="/auth/sign-up">Sign Up!</NavLink>
+      </div>
+      <div>
+        <label>Email</label>
+        <input
+          type="email"
+          placeholder="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <label>Password</label>
+        <input
+          type="password"
+          placeholder="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button onClick={submitAuth}>Submit</button>
+      </div>
+    </>
   );
 }

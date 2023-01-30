@@ -10,10 +10,10 @@ function App() {
     <div className="App">
       <Switch>
         <Route path="/auth/:type" component={Auth} />
-        <Route path="/auth/todos" component={Todos} />
+        <Route path="/items" component={Todos} />
         <Route exact path="/">
           <>
-            {user && <Redirect to="/todos" />}
+            {user && <Redirect to="/items" />}
             {!user && <Redirect to="/auth/sign-up" />}
           </>
         </Route>
