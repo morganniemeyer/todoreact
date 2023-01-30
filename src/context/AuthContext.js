@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react';
 import { createContext } from 'react';
+import { getUser } from '../services/auth.js';
 
 const UserContext = createContext();
 
