@@ -6,6 +6,6 @@ export async function getListTasks() {
   return checkError(response);
 }
 export async function createTask(description) {
-  const response = await client.from('tasks').insert([{ description }]).single();
+  const response = await client.from('tasks').insert({ description }).single();
   return checkError(response);
 }

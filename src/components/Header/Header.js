@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { useUser } from '../../context/AuthContext.js';
 import { signOut } from '../../services/auth.js';
+import './Header.css';
 
 export default function Header() {
   const { user, setUser } = useUser();
@@ -19,10 +20,12 @@ export default function Header() {
       {!user && <Redirect to="/auth/sign-in" />}
 
       {user && (
-        <div>
+        <header className="header">
           <h2>Packing List for {user.email}</h2>
-          <button onClick={handleLogOut}>Sign Out</button>
-        </div>
+          <button className="button" onClick={handleLogOut}>
+            Sign Out
+          </button>
+        </header>
       )}
     </div>
   );
